@@ -1,0 +1,36 @@
+Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+//Java solution 
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        //a b c b a 
+               int start=0;int end=0;
+        int maxlen=Math.min(s.length(),1);//if empty string answer 0 has returned, so min function is used
+        Set<Character> set=new HashSet<>();
+        while(end<s.length()){
+            char c=s.charAt(end);
+            while(set.contains(c))
+            {
+                set.remove(s.charAt(start));
+                start+=1;
+            }
+            set.add(c);
+            int windowSize=end-start+1;
+            maxlen=Math.max(maxlen,windowSize);
+            end+=1;
+        }
+    return maxlen;}
+}
