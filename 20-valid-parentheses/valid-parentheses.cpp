@@ -1,22 +1,15 @@
-class Solution {
-public:
-    bool isValid(string s) {
-        stack<char> st;
-
-        for (char c : s) {
-            if (c == '(' || c == '{' || c == '[') {
-                st.push(c);
-            } else {
-                if (st.empty()) return false;
-                if ((c == ')' && st.top() != '(') ||
-                    (c == '}' && st.top() != '{') ||
-                    (c == ']' && st.top() != '[')) {
-                    return false;
+class Solution{
+    public:
+        bool isValid(string s){//{[()]}
+            stack<char> st;
+            for(char ch:s){//01234
+                if(ch=='(' || ch=='{'||ch=='['){
+                    st.push(ch);//{-push [-push (-push
+                }else{
+                    if(st.empty()) return false;
+                    if((ch==')'&&st.top()!='(')||(ch=='}'&&st.top()!='{')||(ch==']'&& st.top()!='[')){
+                   return false; }st.pop();
                 }
-                st.pop();
-            }
-        }
-
-        return st.empty(); // all opened brackets matched
-    }
+            }//true or false
+        return st.empty();}
 };
